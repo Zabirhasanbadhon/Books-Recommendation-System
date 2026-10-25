@@ -40,7 +40,7 @@ Replace the example repository URL with your own GitHub repository URL.
 
 ### 2. Add your CSV dataset
 
-Place your dataset in the project folder, or keep it elsewhere on your computer.
+Download Dataset from Kaggle Place your dataset in the project folder, or keep it elsewhere on your computer.
 
 ### 3. Update the CSV path
 
