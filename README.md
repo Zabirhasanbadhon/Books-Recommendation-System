@@ -29,54 +29,11 @@ Your CSV filename can be different, as long as you update the path in the Python
 
 ## Setup and Run
 
-### 1. Download or clone the repository
-
-```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-cd YOUR-REPOSITORY
-```
-
 Replace the example repository URL with your own GitHub repository URL.
 
 ### 2. Add your CSV dataset
 
 Download Dataset from Kaggle Place your dataset in the project folder, or keep it elsewhere on your computer.
-
-### 3. Update the CSV path
-
-Open `Books Recommendation Syatem.py` and find this line near the top:
-
-```python
-CSV_PATH = Path(r"C:\Users\YourName\Downloads\books.csv")
-```
-
-Change the path to the actual location of your dataset. For example, if `books.csv` is in the same folder as the Python file, you can use:
-
-```python
-CSV_PATH = Path("books.csv")
-```
-
-On Windows, a raw string path is also fine:
-
-```python
-CSV_PATH = Path(r"D:\Datasets\books.csv")
-```
-
-Save the file after changing the path.
-
-### 4. Run the application
-
-Open a terminal in the project folder and run:
-
-```bash
-Books Recommendation System.py
-```
-
-If your system uses `python3` to run Python, use:
-
-```bash
-Books Recommendation System.py
-```
 
 ## CSV Dataset Format
 
@@ -140,19 +97,5 @@ Your dataset may not contain genre, description, or keyword information. Check t
 ### Tkinter is unavailable
 
 Use a standard Python installation that includes Tkinter. On some Linux distributions, Tkinter may need to be installed through the operating system's package manager.
-
-## Possible Improvements
-
-- Add persistent reading-list storage.
-- Support multiple genres per book.
-- Improve recommendations with TF-IDF or a trained recommendation model.
-- Add unit tests and dataset validation.
-- Add pagination for very large datasets.
-
-## License
-
-Choose a license for your repository before publishing (for example, MIT). If you use a third-party dataset, review and follow that dataset's license and attribution requirements separately.
-
----
 
 **Built with Python and Tkinter.**
