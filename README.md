@@ -69,13 +69,13 @@ Save the file after changing the path.
 Open a terminal in the project folder and run:
 
 ```bash
-python Books Recommendation Syatem.py.py
+Books Recommendation System.py
 ```
 
 If your system uses `python3` to run Python, use:
 
 ```bash
-python3 Books Recommendation Syatem.py.py
+Books Recommendation System.py
 ```
 
 ## CSV Dataset Format
