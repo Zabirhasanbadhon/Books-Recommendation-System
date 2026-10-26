@@ -1,101 +1,79 @@
-# ZaBir | Book Recommendation System
+# 📚 ZaBir HaSan | Book Recommendation System
 
-A desktop-based **Book Recommendation System** built with Python and Tkinter. It loads book records from a CSV dataset instead of relying on a manually written book list.
+A desktop-based **Book Recommendation System** developed using Python and Tkinter. The application allows users to explore books, search by title or author, filter by genre, sort books, discover similar recommendations, and maintain a personal reading list.
 
-The app provides a searchable book catalog, genre filtering, sorting, book details, content-based recommendations, a temporary reading list, and a top-rated books view.
+The application loads book information from a CSV dataset and uses content-based similarity matching to recommend books.
 
-## Features
+## ✨ Features
 
-- **CSV dataset integration** — loads book records from your own `.csv` file.
-- **Search books** — search across book titles, authors, genres, descriptions, and keywords.
-- **Filter by genre** — choose a genre from the dropdown.
-- **Sort the catalog** — sort by recommended order, highest rating, title (A–Z), or newest publication year.
-- **Book details** — view a selected book's author, genre, rating, publication year, and description.
-- **Similar-book recommendations** — recommends books using text similarity and a small bonus for matching genres.
-- **Top-rated books** — quickly view the six highest-rated books in the dataset.
-- **Reading list** — save books during the current app session and remove them later.
-- **Dark-themed Tkinter interface** — a desktop GUI with search and filtering controls.
+- **📖 Book Catalog:** Browse books with their titles, authors, genres, ratings, and publication years.
+- **🔍 Search Books:** Search using book titles, authors, genres, descriptions, and keywords.
+- **🏷️ Genre Filtering:** Filter books by genre.
+- **↕️ Sorting Options:** Sort books by recommended order, highest rating, title (A–Z), or newest publication year.
+- **🤖 Book Recommendations:** Discover similar books using keyword matching and genre similarity.
+- **⭐ Top-Rated Books:** View the six highest-rated books in the dataset.
+- **📚 Reading List:** Add books to your reading list and remove saved books when needed.
+- **📝 Book Details:** View author information, genre, rating, publication year, and description.
+- **🎨 Cream White Theme:** A clean desktop interface with a warm, modern color scheme.
+- **🕒 Live Clock:** Display the current date and time.
+- **📂 CSV Dataset Support:** Load book information from an external CSV file.
 
-## Requirements
+## 🛠️ Technologies Used
 
-- Python 3.9 or newer recommended
-- Tkinter (usually included with standard Python installations)
-- A CSV dataset containing book information
+- **Python** — Core programming language.
+- **Tkinter** — Desktop graphical user interface.
+- **ttk** — Styled interface components.
+- **CSV** — Dataset loading and processing.
+- **Regular Expressions (`re`)** — Text processing and keyword matching.
+- **Pathlib** — File path management.
 
-**No third-party Python packages are required.** The code uses Python's built-in `csv`, `re`, and `pathlib` modules.
+No third-party Python packages are required.
 
+## 📋 Requirements
 
-Your CSV filename can be different, as long as you update the path in the Python file.
+- Python 3.9 or later recommended.
+- A compatible Windows, Linux, or macOS environment with Tkinter installed.
+- A book dataset in CSV format.
 
-## Setup and Run
+## 📊 Dataset Format
 
-Replace the example repository URL with your own GitHub repository URL.
+The application supports common CSV column names for book information.
 
-### 2. Add your CSV dataset
-
-Download Dataset from Kaggle Place your dataset in the project folder, or keep it elsewhere on your computer.
-
-## CSV Dataset Format
-
-The CSV file must have a header row and a book-title column. The loader accepts several common names for supported fields.
-
-| Information | Recognized column names (examples) |
+| Column | Description |
 |---|---|
-| Book title (**required**) | `title`, `book title`, `name` |
-| Author | `authors`, `author`, `book author` |
-| Genre | `genre`, `genres`, `category`, `categories`, `subject`, `subjects`, `book genre` |
-| Rating | `average_rating`, `average rating`, `rating`, `book rating`, `score` |
-| Publication year/date | `year`, `publication year`, `original publication year`, `published year`, `publication_date`, `published date` |
-| Description | `description`, `book description`, `summary`, `synopsis`, `overview`, `about` |
-| Keywords | `keywords`, `tags`, `subjects`, `categories`, `genre`, `genres` |
+| `title` | Book title |
+| `authors` | Author name or names |
+| `genre` | Book genre or category |
+| `average_rating` | Average book rating |
+| `year` | Publication year |
+| `description` | Book description or summary |
+| `keywords` | Keywords, tags, or related subjects |
 
-Column names are normalized, so underscores and spaces are generally treated equivalently. The CSV should use a standard comma-separated format with column names in the first row.
+The loader recognizes several alternative column names. Missing optional fields receive default values, and duplicate book titles are skipped.
 
-### Example CSV
+**Note:** The CSV file must contain a recognizable title column, such as `title`, `book title`, or `name`.
 
-```csv
-title,authors,genre,average_rating,year,description,keywords
-The Hobbit,J.R.R. Tolkien,Fantasy,4.8,1937,A fantasy adventure about a hobbit's journey,fantasy adventure dragons journey
-Pride and Prejudice,Jane Austen,Classic,4.6,1813,A novel about manners and relationships,classic romance society relationships
-```
+## 🧠 Recommendation Method
 
-This is only an example of the expected structure. You can use a larger dataset, including one from Kaggle, provided its column names and data are compatible.
+The system uses a simple content-based recommendation approach.
 
-## How Recommendations Work
+1. It extracts words from each book's title, author, genre, description, and keywords.
+2. It calculates **Jaccard similarity** between the selected book and other books.
+3. It adds a bonus for books that share the same genre.
+4. It ranks the candidates by similarity and rating.
+5. It displays up to six recommendations.
 
-The program creates a text representation of each book using its title, author, genre, description, and keywords. It tokenizes the text and calculates **Jaccard similarity** between two books. A bonus is added when both books have the same genre.
+This approach does not require user accounts, training data, or a machine-learning model.
 
-Recommendations therefore depend on the information available in your CSV. Datasets with useful genre labels, descriptions, and keywords generally support more informative recommendations.
+## ⚠️ Limitations
 
-> This is a lightweight content-based recommendation method. It does not train a machine-learning model or learn from user ratings and reading history.
+- Recommendations depend on the information available in the CSV dataset.
+- The recommendation algorithm uses text and genre similarity rather than a trained machine-learning model.
+- Reading-list entries are stored in memory and are not saved after the application closes.
+- Book descriptions, ratings, and publication years depend on the quality and completeness of the dataset.
 
-## Data Handling Notes
+## 👨‍💻 Developer
 
-- Rows without a title are skipped.
-- Duplicate titles are skipped because the GUI uses titles as identifiers.
-- Missing author values are displayed as `Unknown`.
-- Missing genre values are displayed as `Other`.
-- Missing ratings default to `0`; ratings from 0 to 10 are converted to a 0-to-5 scale, and values are limited to that range.
-- The year is extracted from a recognizable four-digit year in the publication year/date field. If none is found, it defaults to `0`.
-- Missing descriptions receive a placeholder message.
-- The reading list exists only while the application is running; it is not saved to disk.
+**ZaBir HaSan**
 
-## Troubleshooting
-
-### `FileNotFoundError`
-
-Check that `CSV_PATH` points to the correct CSV file. Make sure the file exists and that the filename and extension are correct.
-
-### The application says no books were loaded
-
-Confirm that your CSV has a header row and a title column named `title`, `book title`, or `name`. Also check that the title cells are not all blank.
-
-### Genre filtering or recommendations are not useful
-
-Your dataset may not contain genre, description, or keyword information. Check the column names against the supported fields above, or choose a dataset with richer book metadata.
-
-### Tkinter is unavailable
-
-Use a standard Python installation that includes Tkinter. On some Linux distributions, Tkinter may need to be installed through the operating system's package manager.
-
-**Built with Python and Tkinter.**
+*Book Recommendation System — Python Desktop Application*
